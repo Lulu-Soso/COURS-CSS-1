@@ -1,0 +1,191 @@
+/* Fil rouge : selecteur, dimensions, couleurs */
+/* Texte  */
+/* Background */
+/* Boxes */
+/* Positioning */
+/* Flex */
+/* Grid */
+/* Pseudo classe */
+/* Responsive */
+/* Débug */
+
+/* police importée de google font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+
+@font-face {                                /* police générale */
+    font-family: "font-1";
+    src: url(./assets/Roboto-Medium.ttf);
+}
+
+
+/****
+* {             selectionne sur tous les éléments du DOM
+    margin: 0;
+    padding: 0;
+    border: 2px red solid;    technique pour voir l'intégralité des éléments sur la page
+}  
+****/
+
+
+body {
+    font-family: "font-1", serif;
+    background: url(./assets/bg.jpg) no-repeat fixed center/cover;  /* c'est égale à background-color . Bonne pratique de mettre l'image dans css*/
+    /* height: 100vh;                                 hauteur 100% du navigateur */
+    /* overflow: hidden;                           pour l'effet du scroll en enlevant les marges, hauteur image 100% */
+}
+
+h1 {
+  text-transform: uppercase;                /* mettre en masjucule */
+  letter-spacing: 2px;                      /* mettre des espaces entre les lettres */
+  font-size: 2.5rem;                        /* taille de la police, bonne pratique d'ecrire en rem (1rem = 16px)*/
+  color: darkblue;                        /* couleur du texte */
+  text-shadow: 5px 3px 0 #85dadab6;       /* ombre */
+  text-align: center;                       /* alignement du texte au centre */
+  font-family: 'Playfair Display', serif;   /* police importée de google font */
+}
+
+main {
+    background: rgba(245, 245, 245, 0.95); /* transparence */
+    width: 90%;                 /* en général, les largeurs sont en % */
+    min-height: 500px;          /* hauteur en pixel */
+    margin:  0 auto;            /* haut et bas = 0 px et centré à droite et gauche */
+    padding: 15px;              /* marge à l'intérieur */
+    border-radius: 15px;        /* arrondi les bords */
+    box-shadow: 0 2px 12px 5px rgba(0, 0, 0, 0.255);
+}
+
+.positioning, 
+.flexbox,
+.grid {      /* à l'intérieur sont des attributs */
+    border: 2px solid skyblue;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+/************************** Positioning **************************/
+.positioning {
+    position: relative; /* devient élément parent */
+}
+
+h2 {
+    margin: 0;
+}
+
+#circle {
+    height: 60px;
+    width: 60px;
+    background: skyblue;
+    padding: 20px;
+    border-radius: 50%; /* pour créer un cercle */
+    position: absolute; /* pour mettre n'importe où sur la page */
+    top: -10px; 
+    right: 110px; 
+    box-shadow: 0 2px 12px 5px rgba(51, 51, 51, 0.13);
+    z-index: 1; /* apparition devant ou derrière un élément */
+}
+
+#rectangle {
+    height: 15px;
+    width: 100px;
+    background: slateblue;
+    padding: 20px;
+    position: absolute;
+    top: 50%;    /* pour centrer l'élément sur la hauteur */
+    left: 50%;   /* pour centrer l'élément */
+    transform: translate(-50%, -50%); /*revenir à 50% pour prendre son milieu, centré sur la hauteur*/
+}
+
+/************************** Flexbox **************************/
+ul {
+    display: flex;  /* mettre à la ligne */
+    justify-content: space-around;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+    font-size: 0.7rem;
+    height: 160px;
+    width: 160px;
+    background: turquoise;
+    display: flex;
+    align-items: center;        /* centrer horizontalement */
+    justify-content: center;    /* centrer verticalement */
+}
+
+/************************** Grid **************************/
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%; /* 1er enfant 30%, 2ème enfant 70% */
+    padding: 20px;
+}
+
+.img {
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 colonnes égales avec fraction */
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "i1 i2"
+        "ta ta"
+        "bt bt";
+}
+
+input, 
+textarea {
+    margin: 5px;
+    height: 45px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-family: "font-1";
+}
+
+#firstanme {
+    grid-area: i1;
+}
+
+#surname {
+    grid-area: i2;
+}
+
+textarea {
+    grid-area: ta;
+    resize: none; /* pour empêcher de se redimensionner */ 
+}
+
+input[type="submit"] {
+    grid-area: bt;
+    cursor: pointer;
+    background: cyan;
+    transition: 0.4s;
+}
+
+input[type="submit"]:hover {
+    background: darkblue;
+    color: white;
+}
+
+/************************** Responsive **************************/
+@media screen and (max-width: 1000px) {
+    .grid-container {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    form {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+            "i1"
+            "i2"
+            "ta"
+            "bt";
+    }
+}
